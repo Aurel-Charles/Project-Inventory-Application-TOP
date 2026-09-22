@@ -1,0 +1,31 @@
+{
+  "name": "project-inventory-application-top",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --env-file=.env app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aurel-Charles/Project-Inventory-Application-TOP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Aurel-Charles/Project-Inventory-Application-TOP/issues"
+  },
+  "homepage": "https://github.com/Aurel-Charles/Project-Inventory-Application-TOP#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "dotenv": "^18.0.3",
+    "nodemon": "^3.1.14"
+  }
+}
