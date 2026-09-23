@@ -27,3 +27,11 @@ export async function addNewCategory(name, description) {
         [name, description]
     )
 }
+
+export async function deleteCategoryById(id) {
+    const {rows} = await pool.query(
+        'DELETE FROM category WHERE id = $1 RETURNING *',
+        [id]
+    )
+    return rows[0]
+}

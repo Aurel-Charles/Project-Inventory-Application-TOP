@@ -1,4 +1,4 @@
-import { addNewCategory, getCategories, getCategoryById, getItemsByCategory } from "../db/queries/category.js";
+import { addNewCategory, deleteCategoryById, getCategories, getCategoryById, getItemsByCategory } from "../db/queries/category.js";
 
 
 export async function getCategoriesFromDb(req, res, next) {   
@@ -40,6 +40,17 @@ export async function postAddCategoryToDb(req, res, next) {
     try {
         const {name, description} = req.body 
         await addNewCategory(name, description)
+        res.redirect("/categories")
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function postDeleteCategoryById(req, res, next) {
+    try {
+        const id = req.params.id
+        const categoryDeleted = await deleteCategoryById(id)
+        console.log(categoryDeleted.name + " category has been deleted");
         res.redirect("/categories")
     } catch (error) {
         next(error)
