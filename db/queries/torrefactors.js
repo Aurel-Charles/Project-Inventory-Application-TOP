@@ -30,3 +30,10 @@ export async function addNewTorrefactor(name, country, website) {
         [name,country,website]
     )
 }
+
+export async function deleteTorrefactorById(id) {
+    const {rows} = await pool.query(
+        'DELETE FROM torrefactors WHERE id = $1 RETURNING *',
+        [id]
+    )
+}

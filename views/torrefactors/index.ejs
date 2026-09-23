@@ -12,6 +12,9 @@
             <a href="/torrefactors/<%= torrefactor.id %>"> <%= torrefactor.name %> </a>
             <p> <%= torrefactor.country %> </p>
             <a href="<%= torrefactor.website %>" target="_blank">Website</a>
+            <form action="torrefactors/<%= torrefactor.id %>/delete" method="post">
+                <button type="submit">X</button>
+            </form>
     <% }) } %>                                           
 </body>
 </html>
