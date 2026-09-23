@@ -41,4 +41,5 @@ export async function updateCategory(id, name, description) {
         'UPDATE category SET name = $2, description = $3 WHERE id = $1',
         [id , name, description]
     )
+    return rows
 }

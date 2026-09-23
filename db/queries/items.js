@@ -37,3 +37,11 @@ export async function deleteItemById(id) {
     )
     return rows
 }
+
+export async function updateItem(id, name, description, price , quantity, category_id, torrefactor_id) {
+    const {rows} = await pool.query(
+        'UPDATE items SET name = $2, description = $3, price = $4, quantity = $5, category_id = $6, torrefactor_id = $7 WHERE id = $1',
+        [id , name, description, price, quantity , category_id, torrefactor_id]
+    )
+    return rows
+}

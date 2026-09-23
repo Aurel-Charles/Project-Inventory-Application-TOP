@@ -30,6 +30,12 @@
                         </td>
             </tr>
         </tbody>
-    </table>                      
+    </table>     
+    
+    <a href="/items/<%= item.id %>/edit "> Edit</a>
+    <form action="/items/<%= item.id %>/delete" method="post">
+        <button type="submit">X</button>
+    </form>
+    
 </body>
 </html>

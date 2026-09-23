@@ -3,7 +3,13 @@
 <%- include('../partials/head') %>
 <body>
     <h1> <%= category.name %> </h1>
-    <% if(items.length === 0){%> <p>there's no items</p> <% }
+    <form action="/categories/<%= category.id %>/delete" method="post">
+        <button type="submit">X</button>
+    </form>
+    <a href="/categories/<%= category.id %>/edit">Edit</a>
+    <% if(items.length === 0){%> 
+        <p>there's no items</p> 
+    <% }
     else{
         items.forEach(item => { %>
             <a href="/items/<%= item.id %>">

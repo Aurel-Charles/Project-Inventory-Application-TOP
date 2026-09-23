@@ -1,5 +1,5 @@
 import { getCategories, getCategoryById } from "../db/queries/category.js";
-import { addNewItem, deleteItemById, getAllItem, getItemById } from "../db/queries/items.js";
+import { addNewItem, deleteItemById, getAllItem, getItemById, updateItem } from "../db/queries/items.js";
 import { getTorrefactorById, getTorrefactors } from "../db/queries/torrefactors.js";
 
 
@@ -58,6 +58,32 @@ export async function postDeleteItemById(req, res, next) {
     try {
         const id = req.params.id;
         const deletedItem = await deleteItemById(id)
+        res.redirect("/items")
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function getEditItem(req, res, next) {
+    try {
+        const  id = req.params.id
+        const item = await getItemById(id)
+        const categories = await getCategories()
+        const torrefactors = await getTorrefactors()
+        res.render("items/edit", {item, categories, torrefactors})
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function postUpdateItem(req, res, next) {
+    try {
+        const id = req.params.id
+        const {name, description, price, quantity, category_id, torrefactor_id} = req.body
+        console.log(req.body);
+        const updatedItem = await updateItem(id, name, description, price, quantity, category_id, torrefactor_id === "" ? null : torrefactor_id)
+        console.log(updatedItem);
+        
         res.redirect("/items")
     } catch (error) {
         next(error)
