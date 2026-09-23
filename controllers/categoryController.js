@@ -1,4 +1,4 @@
-import { getCategories, getCategoryById, getItemsByCategory } from "../db/queries/category.js";
+import { addNewCategory, getCategories, getCategoryById, getItemsByCategory } from "../db/queries/category.js";
 
 
 export async function getCategoriesFromDb(req, res, next) {   
@@ -22,6 +22,25 @@ export async function getCategoryFromDb(req, res, next) {
         ])
         console.log(category, items);
         res.render("categories/show", {category, items})
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+export function getAddCategoryForm(req, res, next){
+    try {
+        res.render("categories/new")
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function postAddCategoryToDb(req, res, next) {
+    try {
+        const {name, description} = req.body 
+        await addNewCategory(name, description)
+        res.redirect("/categories")
     } catch (error) {
         next(error)
     }

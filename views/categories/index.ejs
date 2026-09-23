@@ -2,7 +2,9 @@
 <html lang="en">
 <%- include('../partials/head') %>
 <body>
-    <p>Category index</p>
+    <h1>Category index</h1>
+    <a href="/categories/new">Add a Category</a>
+    <br>
     <% if(categories.length === 0){ %>
         <p>there's no categories</p>
     <% } else { 
@@ -10,6 +12,7 @@
             <a href="/categories/<%= category.id %>">
                 <%= category.name %>
             </a>
+            <p> <%= category.description %> </p>
     <% }) } %>                                           
 </body>
 </html>

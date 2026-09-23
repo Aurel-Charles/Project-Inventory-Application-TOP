@@ -20,3 +20,10 @@ export async function getItemsByCategory(id) {
     )
     return rows
 }
+
+export async function addNewCategory(name, description) {
+    await pool.query(
+        'INSERT INTO category (name, description) VALUES ($1, $2)',
+        [name, description]
+    )
+}
