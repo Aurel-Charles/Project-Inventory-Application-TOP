@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <h1>Edit Torrefactor</h1>
+        <form action="/torrefactors/<%= torrefactor.id %>/edit" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<%= torrefactor.name %>" required>
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country" value="<%= torrefactor.country %>">
+            <label for="website">Website</label>
+            <input type="text" name="website" id="website" value="<%= torrefactor.website %>">
+            <button type="submit">
+                Update
+            </button>
+        </form>                  
+</body>
+</html>
+

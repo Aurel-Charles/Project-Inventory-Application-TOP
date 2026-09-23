@@ -38,3 +38,10 @@ export async function deleteTorrefactorById(id) {
     )
     return rows
 }
+
+export async function updateTorrefactor(id, name, country, website) {
+    const {rows} = await pool.query(
+        'UPDATE torrefactors SET name = $2, country = $3, website = $4 WHERE id = $1',
+        [id , name, country, website]
+    )
+}

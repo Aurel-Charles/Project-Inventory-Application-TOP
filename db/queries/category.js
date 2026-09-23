@@ -35,3 +35,10 @@ export async function deleteCategoryById(id) {
     )
     return rows[0]
 }
+
+export async function updateCategory(id, name, description) {
+    const {rows} = await pool.query(
+        'UPDATE category SET name = $2, description = $3 WHERE id = $1',
+        [id , name, description]
+    )
+}

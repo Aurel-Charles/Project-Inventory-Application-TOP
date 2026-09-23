@@ -1,4 +1,4 @@
-import { addNewTorrefactor, deleteTorrefactorById, getItemsByTorrefactor, getTorrefactorById, getTorrefactors } from "../db/queries/torrefactors.js";
+import { addNewTorrefactor, deleteTorrefactorById, getItemsByTorrefactor, getTorrefactorById, getTorrefactors, updateTorrefactor } from "../db/queries/torrefactors.js";
 
 export async function getTorrefactorsFromDb(req, res, next) {
     try {
@@ -49,6 +49,29 @@ export async function postDeleteTorrefactorById(req, res, next) {
         const id = req.params.id
         const deletedTorrefactor = await deleteTorrefactorById(id)
         console.log(deletedTorrefactor.name + " category has been deleted");
+        res.redirect("/torrefactors")
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function getEditTorrefactor(req, res, next) {
+    try {
+        const id = req.params.id 
+        const torrefactor = await getTorrefactorById(id)
+        console.log(torrefactor);
+        
+        res.render("torrefactors/edit" , {torrefactor})        
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function postUpdateTorrefactor(req, res, next) {
+    try {
+        const id = req.params.id
+        const {name, country , website} = req.body
+        await updateTorrefactor(id, name, country, website)
         res.redirect("/torrefactors")
     } catch (error) {
         next(error)
