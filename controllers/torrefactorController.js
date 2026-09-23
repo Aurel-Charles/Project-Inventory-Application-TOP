@@ -47,8 +47,8 @@ export async function postAddTorrefactorToDb(req, res , next) {
 export async function postDeleteTorrefactorById(req, res, next) {
     try {
         const id = req.params.id
-        const torrefactorDeleted = await deleteTorrefactorById(id)
-        console.log(torrefactorDeleted.name + " category has been deleted");
+        const deletedTorrefactor = await deleteTorrefactorById(id)
+        console.log(deletedTorrefactor.name + " category has been deleted");
         res.redirect("/torrefactors")
     } catch (error) {
         next(error)

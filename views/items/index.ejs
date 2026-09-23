@@ -11,6 +11,9 @@
         <a href="/items/<%= item.id %>"> <%= item.name %> </a>
         <p><%= item.category_name %> </p>
         <p><%= item.torrefactor_name %> </p>
+        <form action="/items/<%= item.id %>/delete" method="post">
+            <button type="submit">X</button>
+        </form>
     <% }) }%>                                                
 
 </body>

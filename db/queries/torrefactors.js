@@ -36,4 +36,5 @@ export async function deleteTorrefactorById(id) {
         'DELETE FROM torrefactors WHERE id = $1 RETURNING *',
         [id]
     )
+    return rows
 }

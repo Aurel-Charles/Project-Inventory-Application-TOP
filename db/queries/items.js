@@ -29,3 +29,11 @@ export async function addNewItem(name, description, price, quantity, category_id
         ]
     )
 }
+
+export async function deleteItemById(id) {
+    const {rows} = await pool.query(
+        'DELETE FROM items WHERE id = $1 RETURNING *',
+        [id]
+    )
+    return rows
+}

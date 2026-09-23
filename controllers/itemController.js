@@ -1,5 +1,5 @@
 import { getCategories, getCategoryById } from "../db/queries/category.js";
-import { addNewItem, getAllItem, getItemById } from "../db/queries/items.js";
+import { addNewItem, deleteItemById, getAllItem, getItemById } from "../db/queries/items.js";
 import { getTorrefactorById, getTorrefactors } from "../db/queries/torrefactors.js";
 
 
@@ -48,6 +48,16 @@ export async function postAddNewItem(req, res, next) {
     try {
         const {name, description, price, quantity, category_id, torrefactor_id } = req.body
         await addNewItem(name, description, price, quantity, category_id, torrefactor_id === "" ? null : torrefactor_id )
+        res.redirect("/items")
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function postDeleteItemById(req, res, next) {
+    try {
+        const id = req.params.id;
+        const deletedItem = await deleteItemById(id)
         res.redirect("/items")
     } catch (error) {
         next(error)
