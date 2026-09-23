@@ -23,3 +23,10 @@ export async function getItemsByTorrefactor(id) {
    )
    return rows
 }
+
+export async function addNewTorrefactor(name, country, website) {
+    await pool.query(
+        'INSERT INTO torrefactors (name, country, website) VALUES ($1, $2, $3)',
+        [name,country,website]
+    )
+}

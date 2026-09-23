@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <h1>Add a new Torrefactor</h1>
+        <form action="/torrefactors/" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country">
+            <label for="website">Website</label>
+            <input type="text" name="website" id="website">
+            <button type="submit">
+                Add
+            </button>
+        </form>                  
+</body>
+</html>
+

@@ -2,14 +2,16 @@
 <html lang="en">
 <%- include('../partials/head') %>
 <body>
-    <p>Torrefactors index</p>
+    <h1>Torrefactors index</h1>
+    <a href="/torrefactors/new">Add a torrefactor</a>
+    <br>
     <% if(torrefactors.length === 0){ %>
         <p>there's no torrefactors</p>
     <% } else { 
         torrefactors.forEach(torrefactor => { %>
-            <a href="/torrefactors/<%= torrefactor.id %>">
-                <%= torrefactor.name %>
-            </a>
+            <a href="/torrefactors/<%= torrefactor.id %>"> <%= torrefactor.name %> </a>
+            <p> <%= torrefactor.country %> </p>
+            <a href="<%= torrefactor.website %>" target="_blank">Website</a>
     <% }) } %>                                           
 </body>
 </html>

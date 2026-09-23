@@ -9,9 +9,7 @@
         <p>there's no categories</p>
     <% } else { 
         categories.forEach(category => { %>
-            <a href="/categories/<%= category.id %>">
-                <%= category.name %>
-            </a>
+            <a href="/categories/<%= category.id %>"> <%= category.name %> </a>
             <p> <%= category.description %> </p>
     <% }) } %>                                           
 </body>
