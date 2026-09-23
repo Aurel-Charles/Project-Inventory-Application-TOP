@@ -31,6 +31,8 @@ async function main() {
     )
   `);
 
+  await pool.query(`TRUNCATE category, torrefactors, items RESTART IDENTITY CASCADE`)
+
   await pool.query(`
     INSERT INTO category (name, description) VALUES
     ('Café', 'Grains et moutures'),
@@ -40,14 +42,21 @@ async function main() {
 
   await pool.query(`
     INSERT INTO torrefactors (name, country, website) VALUES
-    ('People Possession', 'France', 'https://peoplepossession.com')
-  `);
-  
-  await pool.query(`
-    INSERT INTO items (name, description, price, quantity, category_id, torrefactor_id) VALUES
-    ('Gesha Aponte', 'Lemongrass, Sichuan pepper and Black tea ,ORIGIN : COLOMBIA (NARINO, BUESACO) 1800M', 26.50 , 0, 1, 1 )
-  `);
+    ('People Possession', 'France', 'https://peoplepossession.com'),
+    ('Muda', 'France', 'https://cafesmuda.fr/')
+  `)
 
+  await pool.query(
+    `INSERT INTO items (name, description, price, quantity, category_id, torrefactor_id) VALUES
+      ('Gesha Aponte', 'Lemongrass, Sichuan pepper and Black tea, ORIGIN: COLOMBIA', 26.50, 0, 1, 1),
+      ('NBA New Berry Addiction{Blend}', 'WILD STRAWBERRIES, CANDIED LEMON, RED FRUITS', 17.9, 0, 1, 1),
+      ($1, $2, 10.90, 2, 1, 2)`,
+    [
+      'ENDLESS SUMMER - MYANMAR',
+      "Et si l'été ne se terminait jamais ? Endless Summer est le fruit d'une collaboration entre Cafés MUDA et le Paddo Café, l'ambassadeur de l'art de vivre à l'Australienne dans le Vieux-Lille."
+    ]
+  );
+  
   console.log("Cooffee Shop is up !");
   await pool.end();
 }

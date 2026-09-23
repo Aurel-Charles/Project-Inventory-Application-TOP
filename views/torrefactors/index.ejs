@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <p>Torrefactors index</p>
+    <% if(torrefactors.length === 0){ %>
+        <p>there's no torrefactors</p>
+    <% } else { 
+        torrefactors.forEach(torrefactor => { %>
+            <a href="/torrefactors/<%= torrefactor.id %>">
+                <%= torrefactor.name %>
+            </a>
+    <% }) } %>                                           
+</body>
+</html>
+

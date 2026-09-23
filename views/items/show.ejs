@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <h1> <%= item.name %> </h1>
+    <table>
+        <thead>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Category</td>
+            <td>Torrefactor</td>
+        </thead>
+        <tbody>
+            <tr>    
+                <td> <%= item.id %> </td>
+                <td> <%= item.name %> </td>
+                <td> <%= item.description %> </td>
+                <td> <%= item.price %> </td>
+                <td> <%= item.quantity %> </td>
+                <td> <a href="/categories/<%= category.id %>"><%= category.name %></a> </td>
+                <td> 
+                    <% if(torrefactor) { %>
+                        <a href="/torrefactors/<%= torrefactor.id %>"><%= torrefactor.name %></a>
+                        <% } else { %>
+                            -
+                            <% } %>
+                        </td>
+            </tr>
+        </tbody>
+    </table>                      
+</body>
+</html>
