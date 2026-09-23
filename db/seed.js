@@ -35,9 +35,9 @@ async function main() {
 
   await pool.query(`
     INSERT INTO category (name, description) VALUES
-    ('Café', 'Grains et moutures'),
+    ('Coffee', 'Grains et moutures'),
     ('Brewer', 'Méthodes d extraction'),
-    ('Accessoire', 'Tout le reste')
+    ('Accessory', 'Tout le reste')
   `);
 
   await pool.query(`

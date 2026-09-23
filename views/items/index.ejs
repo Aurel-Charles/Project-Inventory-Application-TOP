@@ -3,12 +3,14 @@
 <%- include('../partials/head') %>
 <body>
     <p>Items index</p>
+    <a href="/items/new">Add a Item</a>
+    <br>
     <% if(items.length === 0){ %>
         <p>there's no items</p>
     <% } else { items.forEach(item => { %>
-        <a href="/items/<%= item.id %>">
-            <%= item.name %>
-        </a>
+        <a href="/items/<%= item.id %>"> <%= item.name %> </a>
+        <p><%= item.category_name %> </p>
+        <p><%= item.torrefactor_name %> </p>
     <% }) }%>                                                
 
 </body>

@@ -1,7 +1,10 @@
 import { Router } from "express";
-import { getItemByIdFromDb, getItemsFromDb } from "../controllers/itemController.js";
+import { getAddItemForm, getItemByIdFromDb, getItemsFromDb, postAddNewItem } from "../controllers/itemController.js";
 
 export const itemRouter = Router()
 
 itemRouter.get("/", getItemsFromDb)
+itemRouter.get("/new", getAddItemForm)
+itemRouter.post("/" , postAddNewItem)
+
 itemRouter.get("/:id", getItemByIdFromDb)

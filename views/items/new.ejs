@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <h1>Add a new Item</h1>
+        <form action="/items/" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+            <label for="descripton">Description</label>
+            <textarea name="description" id="description" cols="30" required></textarea>
+            <label for="price">Price</label>
+            <input type="number" step="0.01" min="0" name="price">
+            <label for="quantity">Quantity</label>
+            <input type="number" min="0" name="quantity">
+            <label for="category">Category</label>
+            <select name="category_id" id="category_id">
+                <% categories.forEach(cat => { %> 
+                    <option value="<%= cat.id %>"> <%= cat.name %> </option>
+                <% }) %>
+            </select>
+            <label for="torrefactor">Torrefactor</label>
+            <select name="torrefactor_id" id="torrefactor_id">
+                <option value="">-none-</option>
+                <% torrefactors.forEach(tor => { %> 
+                    <option value="<%= tor.id %>"> <%= tor.name %> </option>
+                <% }) %>
+            </select>
+            <button type="submit">
+                Add
+            </button>
+        </form>                  
+</body>
+</html>
+
