@@ -1,4 +1,5 @@
-    import { addNewCategory, deleteCategoryById, getCategories, getCategoryById, getItemsByCategory, updateCategory } from "../db/queries/category.js";
+import { addNewCategory, deleteCategoryById, getCategories, getCategoryById, getItemsByCategory, updateCategory } from "../db/queries/category.js";
+import { HttpError } from "../error/httpError.js";
 
 
     export async function getCategoriesFromDb(req, res, next) {   
@@ -15,12 +16,10 @@
         try {
             const id = req.params.id
             console.log(id);
+            const category = await getCategoryById(id)
+            if (!category) throw new HttpError("Category not found", 404)
             
-            const [category , items] = await Promise.all([
-                getCategoryById(id),
-                getItemsByCategory(id)
-            ])
-            console.log(category, items);
+            const items = await getItemsByCategory(id)
             res.render("categories/show", {category, items})
         } catch (error) {
             next(error)
@@ -50,6 +49,7 @@
         try {
             const id = req.params.id
             const categoryDeleted = await deleteCategoryById(id)
+            if (!categoryDeleted) throw new HttpError("Category not found", 404)
             console.log(categoryDeleted.name + " category has been deleted");
             res.redirect("/categories")
         } catch (error) {
@@ -62,6 +62,7 @@
         try {
             const id = req.params.id
             const category = await getCategoryById(id)
+            if (!category) throw new HttpError("Category not found", 404)
             console.log(category);
             
             res.render("categories/edit", {category})

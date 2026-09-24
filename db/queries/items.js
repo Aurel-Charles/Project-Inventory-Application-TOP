@@ -17,7 +17,7 @@ export async function getItemById(id) {
 }
 
 export async function addNewItem(name, description, price, quantity, category_id, torrefactor_id) {
-    pool.query(
+    await pool.query(
         'INSERT INTO items (name, description, price, quantity, category_id, torrefactor_id) VAlUES ($1, $2, $3, $4, $5, $6)',
         [
             name,
@@ -35,7 +35,7 @@ export async function deleteItemById(id) {
         'DELETE FROM items WHERE id = $1 RETURNING *',
         [id]
     )
-    return rows
+    return rows[0]
 }
 
 export async function updateItem(id, name, description, price , quantity, category_id, torrefactor_id) {

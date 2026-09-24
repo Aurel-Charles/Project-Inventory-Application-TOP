@@ -2,6 +2,7 @@
 <html lang="en">
 <%- include('../partials/head') %>
 <body>
+    <%- include('../partials/header') %>
     <h1> <%= torrefactor.name %> </h1>
     <form action="/torrefactors/<%= torrefactor.id %>/delete" method="post">
         <button type="submit">X</button>
