@@ -73,3 +73,14 @@ export async function getOutOfStockItems() {
     `)
     return rows
 }
+
+export async function getCategoryStats() {
+    const {rows} = await pool.query(`
+        SELECT category.name, COUNT(items.id) AS total
+        FROM category
+        LEFT JOIN items ON items.category_id = category.id
+        GROUP BY category.name
+    `)
+    return rows
+}
+

@@ -22,9 +22,7 @@
                         <a href="<%= torrefactor.website %>" target="_blank" class="btn btn--secondary">Website</a>
                         <a href="/torrefactors/<%= torrefactor.id %>" class="btn btn--secondary">Details</a>
                         <a href="/torrefactors/<%= torrefactor.id %>/edit" class="btn btn--secondary">Edit</a>
-                        <form action="/torrefactors/<%= torrefactor.id %>/delete" method="post">
-                            <button type="submit" class="btn btn--danger">X</button>
-                        </form>
+                        <button data-action="/torrefactors/<%= torrefactor.id %>/delete" class="btn btn--danger required-password">X</button>
                     </div>
                 </article>
         <% }) } %>

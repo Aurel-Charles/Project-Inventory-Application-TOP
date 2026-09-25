@@ -23,9 +23,7 @@
                 <div class="card__actions">
                     <a href="/items/<%= items.id %>" class="btn btn--secondary">Details</a>
                     <a href="/items/<%= item.id %>/edit" class="btn btn--secondary">Edit</a>
-                    <form action="/items/<%= item.id %>/delete" method="post">
-                        <button type="submit" class="btn btn--danger">X</button>
-                    </form>
+                    <button data-action="/items/<%= item.id %>/delete" class="btn btn--danger required-password">X</button>
                 </div>
             </article>
         <% }) } %>

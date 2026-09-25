@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getAddCategoryForm, getCategoriesFromDb, getCategoryFromDb, getEditCategory, postAddCategoryToDb, postDeleteCategoryById, postUpdateCategory } from "../controllers/categoryController.js";
+import { verifyAdmin } from "../middleware/verifyAdmin.js";
 
 
 export const categoryRouter = Router()
@@ -11,5 +12,5 @@ categoryRouter.post("/", postAddCategoryToDb)
 
 categoryRouter.get("/:id/edit", getEditCategory)
 categoryRouter.post("/:id/edit", postUpdateCategory)
-categoryRouter.post("/:id/delete", postDeleteCategoryById )
+categoryRouter.post("/:id/delete", verifyAdmin, postDeleteCategoryById )
 categoryRouter.get("/:id", getCategoryFromDb)

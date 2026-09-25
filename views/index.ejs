@@ -5,7 +5,7 @@
     <%- include('./partials/header') %>
     <main class="main">
         <header class="page-header">
-            <h1 class="page-title">Dashboard</h1>
+            <h1 class="page-title"><%= title %> </h1>
         </header>
 
         <div class="stats">
@@ -16,6 +16,7 @@
                     <article class="stat-card">
                         <p class="stat-card__label">Total Items</p>
                         <p class="stat-card__value"><%= stats.total_items %></p>
+                        <a href="/items" class="btn btn--secondary">View</a>
                     </article>
                     <article class="stat-card stat-card--warning">
                         <p class="stat-card__label">Rupture de stock</p>
@@ -33,21 +34,18 @@
             <section class="stats__section">
                 <h2 class="stats__section-title">Catalogue</h2>
                 <div class="stats__group">
-                    <article class="stat-card">
-                        <p class="stat-card__label">Cafés</p>
-                        <p class="stat-card__value"><%= stats.total_coffee %></p>
-                    </article>
-                    <article class="stat-card">
-                        <p class="stat-card__label">Brewers</p>
-                        <p class="stat-card__value"><%= stats.total_brewer %></p>
-                    </article>
-                    <article class="stat-card">
-                        <p class="stat-card__label">Accessoires</p>
-                        <p class="stat-card__value"><%= stats.total_accessory %></p>
-                    </article>
+                    <% categoryStats.forEach(cat => { %>
+                        <% const category = categories.find(c => c.name === cat.name) %>
+                        <article class="stat-card">
+                            <p class="stat-card__label"><%= cat.name %></p>
+                            <p class="stat-card__value"><%= cat.total %></p>
+                            <a href="/categories/<%= category.id %>" class="btn btn--secondary">View</a>
+                        </article>
+                    <% }) %>
                     <article class="stat-card">
                         <p class="stat-card__label">Torréfacteurs</p>
                         <p class="stat-card__value"><%= stats.total_torrefactors %></p>
+                        <a href="/torrefactors" class="btn btn--secondary">View</a>
                     </article>
                 </div>
             </section>

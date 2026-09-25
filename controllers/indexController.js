@@ -1,12 +1,15 @@
-import { getOutOfStockItems, getStats } from "../db/queries/items.js"
+import { getCategories } from "../db/queries/category.js"
+import { getCategoryStats, getOutOfStockItems, getStats } from "../db/queries/items.js"
 
 
 export async function getIndex(req , res , next) {
     try {
-        const stats = await getStats()
-        console.log(stats);
-        
-        res.render("index" , { stats,  title : "Coffee Inventory"})
+        const [stats, categories, categoryStats] = await Promise.all([
+            getStats(),
+            getCategories(),
+            getCategoryStats()
+        ])
+        res.render("index", { stats, categories, categoryStats, title: "Dashboard" })
     } catch (error) {
         next(error)
     }
