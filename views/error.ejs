@@ -1,13 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/header') %>
-    <div class="message-detail">
-        <h2>
-            <%= title %>
-            <span class="message-detail-id">#<%= status %></span>
-        </h2>
-        <p class="message-detail-text"><%= message %></p>
-        <p><a href="/">&larr; Back Home</a></p>
-    </div>
+    <main class="main">
+        <article class="item-detail">
+            <header class="page-header">
+                <h1 class="page-title">Error <span class="error__status">#<%= status %></span></h1>
+            </header>
+            <p class="item-detail__description"><%= message %></p>
+            <a href="/" class="btn btn--secondary">&larr; Back Home</a>
+        </article>
+    </main>
 </body>
 </html>

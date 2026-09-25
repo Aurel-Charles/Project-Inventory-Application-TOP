@@ -3,18 +3,30 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1>Edit Torrefactor</h1>
-        <form action="/torrefactors/<%= torrefactor.id %>/edit" method="post">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="<%= torrefactor.name %>" required>
-            <label for="country">Country</label>
-            <input type="text" name="country" id="country" value="<%= torrefactor.country %>">
-            <label for="website">Website</label>
-            <input type="text" name="website" id="website" value="<%= torrefactor.website %>">
-            <button type="submit">
-                Update
-            </button>
-        </form>                  
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title">Edit <%= torrefactor.name %></h1>
+        </header>
+
+        <form action="/torrefactors/<%= torrefactor.id %>/edit" method="post" class="form">
+            <div class="form__group">
+                <label for="name" class="form__label">Name</label>
+                <input type="text" name="name" id="name" class="form__input" value="<%= torrefactor.name %>" required>
+            </div>
+            <div class="form__group">
+                <label for="country" class="form__label">Country</label>
+                <input type="text" name="country" id="country" class="form__input" value="<%= torrefactor.country %>">
+            </div>
+            <div class="form__group">
+                <label for="website" class="form__label">Website</label>
+                <input type="text" name="website" id="website" class="form__input" value="<%= torrefactor.website %>">
+            </div>
+            <div class="card__actions">
+                <a href="/torrefactors/<%= torrefactor.id %>" class="btn btn--secondary">Cancel</a>
+                <button type="submit" class="btn btn--primary">Update</button>
+            </div>
+        </form>
+    </main>
 </body>
 </html>
 

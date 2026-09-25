@@ -45,3 +45,31 @@ export async function updateItem(id, name, description, price , quantity, catego
     )
     return rows
 }
+
+export async function getStats() {
+    const {rows} = await pool.query(`
+        SELECT 
+            COUNT(*) AS total_items,
+            COUNT(*) FILTER (WHERE quantity = 0) AS out_of_stock,
+            COUNT(*) FILTER (WHERE category.name = 'Coffee') AS total_coffee,
+            COUNT(*) FILTER (WHERE category.name = 'Brewer') AS total_brewer,
+            COUNT(*) FILTER (WHERE category.name = 'Accessory') AS total_accessory,
+            (SELECT COUNT(*) FROM torrefactors) AS total_torrefactors,
+            SUM(price * quantity) AS total_stock_value
+        FROM items
+        JOIN category ON items.category_id = category.id
+    `)
+    return rows[0]
+}
+
+export async function getOutOfStockItems() {
+    const {rows} = await pool.query(`
+        SELECT items.*, category.name AS category_name, 
+               torrefactors.name AS torrefactor_name 
+        FROM items 
+        JOIN category ON items.category_id = category.id
+        LEFT JOIN torrefactors ON items.torrefactor_id = torrefactors.id
+        WHERE quantity = 0
+    `)
+    return rows
+}

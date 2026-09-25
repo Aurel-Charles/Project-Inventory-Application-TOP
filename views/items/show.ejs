@@ -3,40 +3,36 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1> <%= item.name %> </h1>
-    <table>
-        <thead>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Description</td>
-            <td>Price</td>
-            <td>Quantity</td>
-            <td>Category</td>
-            <td>Torrefactor</td>
-        </thead>
-        <tbody>
-            <tr>    
-                <td> <%= item.id %> </td>
-                <td> <%= item.name %> </td>
-                <td> <%= item.description %> </td>
-                <td> <%= item.price %> </td>
-                <td> <%= item.quantity %> </td>
-                <td> <a href="/categories/<%= category.id %>"><%= category.name %></a> </td>
-                <td> 
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title"><%= item.name %></h1>
+            <div class="card__actions">
+                <a href="/items/<%= item.id %>/edit" class="btn btn--secondary">Edit</a>
+                <form action="/items/<%= item.id %>/delete" method="post">
+                    <button type="submit" class="btn btn--danger">X</button>
+                </form>
+            </div>
+        </header>
+
+        <article class="item-detail">
+            <p class="item-detail__description"><%= item.description %></p>
+            <dl class="item-detail__meta">
+                <dt>Prix</dt>
+                <dd><%= item.price %> €</dd>
+                <dt>Stock</dt>
+                <dd><%= item.quantity %></dd>
+                <dt>Catégorie</dt>
+                <dd><a href="/categories/<%= category.id %>"><%= category.name %></a></dd>
+                <dt>Torréfacteur</dt>
+                <dd>
                     <% if(torrefactor) { %>
                         <a href="/torrefactors/<%= torrefactor.id %>"><%= torrefactor.name %></a>
-                        <% } else { %>
-                            -
-                            <% } %>
-                        </td>
-            </tr>
-        </tbody>
-    </table>     
-    
-    <a href="/items/<%= item.id %>/edit "> Edit</a>
-    <form action="/items/<%= item.id %>/delete" method="post">
-        <button type="submit">X</button>
-    </form>
-    
+                    <% } else { %>
+                        -
+                    <% } %>
+                </dd>
+            </dl>
+        </article>
+    </main>
 </body>
 </html>

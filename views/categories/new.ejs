@@ -3,16 +3,23 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1>Add a new Category</h1>
-        <form action="/categories/" method="post">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" required>
-            <label for="descripton">Description</label>
-            <textarea name="description" id="description" cols="30"></textarea>
-            <button type="submit">
-                add
-            </button>
-        </form>                  
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title">Add a new Category</h1>
+        </header>
+
+        <form action="/categories/" method="post" class="form">
+            <div class="form__group">
+                <label for="name" class="form__label">Name</label>
+                <input type="text" name="name" id="name" class="form__input" required>
+            </div>
+            <div class="form__group">
+                <label for="description" class="form__label">Description</label>
+                <textarea name="description" id="description" class="form__textarea"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Add</button>
+        </form>
+    </main>
 </body>
 </html>
 

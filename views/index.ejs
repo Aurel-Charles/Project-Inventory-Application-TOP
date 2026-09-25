@@ -3,9 +3,55 @@
 <%- include('./partials/head') %>
 <body>
     <%- include('./partials/header') %>
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title">Dashboard</h1>
+        </header>
 
-    <p>place holmder for home page content</p>
-    <p>make a nice dashboard</p>
-
+        <div class="stats">
+            <!-- Bloc Stock -->
+            <section class="stats__section">
+                <h2 class="stats__section-title">Stock</h2>
+                <div class="stats__group">
+                    <article class="stat-card">
+                        <p class="stat-card__label">Total Items</p>
+                        <p class="stat-card__value"><%= stats.total_items %></p>
+                    </article>
+                    <article class="stat-card stat-card--warning">
+                        <p class="stat-card__label">Rupture de stock</p>
+                        <p class="stat-card__value"><%= stats.out_of_stock %></p>
+                        <a href="/items/out-of-stock" class="btn btn--secondary">View</a>
+                    </article>
+                    <article class="stat-card">
+                        <p class="stat-card__label">Valeur totale</p>
+                        <p class="stat-card__value"><%= stats.total_stock_value %> €</p>
+                    </article>
+                </div>
+            </section>
+        
+            <!-- Bloc Catalogue -->
+            <section class="stats__section">
+                <h2 class="stats__section-title">Catalogue</h2>
+                <div class="stats__group">
+                    <article class="stat-card">
+                        <p class="stat-card__label">Cafés</p>
+                        <p class="stat-card__value"><%= stats.total_coffee %></p>
+                    </article>
+                    <article class="stat-card">
+                        <p class="stat-card__label">Brewers</p>
+                        <p class="stat-card__value"><%= stats.total_brewer %></p>
+                    </article>
+                    <article class="stat-card">
+                        <p class="stat-card__label">Accessoires</p>
+                        <p class="stat-card__value"><%= stats.total_accessory %></p>
+                    </article>
+                    <article class="stat-card">
+                        <p class="stat-card__label">Torréfacteurs</p>
+                        <p class="stat-card__value"><%= stats.total_torrefactors %></p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

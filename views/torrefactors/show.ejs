@@ -3,19 +3,27 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1> <%= torrefactor.name %> </h1>
-    <form action="/torrefactors/<%= torrefactor.id %>/delete" method="post">
-        <button type="submit">X</button>
-    </form>
-    <a href="/torrefactors/<%= torrefactor.id %>/edit">Edit</a>
-    <% if(items.length === 0){%> 
-        <p>there's no items</p> 
-    <% }
-    else{
-        items.forEach(item => { %>
-            <a href="/items/<%= item.id %>">
-                <%= item.name %>
-            </a>
-        <% }) }%>                                                
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title"><%= torrefactor.name %></h1>
+            <div class="card__actions">
+                <a href="/torrefactors/<%= torrefactor.id %>/edit" class="btn btn--secondary">Edit</a>
+                <form action="/torrefactors/<%= torrefactor.id %>/delete" method="post">
+                    <button type="submit" class="btn btn--danger">X</button>
+                </form>
+            </div>
+        </header>
+
+        <% if(items.length === 0){ %>
+            <p class="empty-state">No items for this torrefactor yet.</p>
+        <% } else { 
+            items.forEach(item => { %>
+                <article class="card">
+                    <div class="card__body">
+                        <a href="/items/<%= item.id %>" class="card__title"><%= item.name %></a>
+                    </div>
+                </article>
+        <% }) } %>
+    </main>
 </body>
 </html>

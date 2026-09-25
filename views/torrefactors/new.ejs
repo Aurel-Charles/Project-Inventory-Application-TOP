@@ -3,18 +3,30 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1>Add a new Torrefactor</h1>
-        <form action="/torrefactors/" method="post">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" required>
-            <label for="country">Country</label>
-            <input type="text" name="country" id="country">
-            <label for="website">Website</label>
-            <input type="text" name="website" id="website">
-            <button type="submit">
-                Add
-            </button>
-        </form>                  
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title">Add a new Torrefactor</h1>
+        </header>
+
+        <form action="/torrefactors/" method="post" class="form">
+            <div class="form__group">
+                <label for="name" class="form__label">Name</label>
+                <input type="text" name="name" id="name" class="form__input" required>
+            </div>
+            <div class="form__group">
+                <label for="country" class="form__label">Country</label>
+                <input type="text" name="country" id="country" class="form__input">
+            </div>
+            <div class="form__group">
+                <label for="website" class="form__label">Website</label>
+                <input type="text" name="website" id="website" class="form__input">
+            </div>
+            <div class="card__actions">
+                <a href="/torrefactors" class="btn btn--secondary">Cancel</a>
+                <button type="submit" class="btn btn--primary">Add</button>
+            </div>
+        </form>
+    </main>
 </body>
 </html>
 

@@ -3,21 +3,32 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1>Torrefactors index</h1>
-    <a href="/torrefactors/new">Add a torrefactor</a>
-    <br>
-    <% if(torrefactors.length === 0){ %>
-        <p>there's no torrefactors</p>
-    <% } else { 
-        torrefactors.forEach(torrefactor => { %>
-            <a href="/torrefactors/<%= torrefactor.id %>"> <%= torrefactor.name %> </a>
-            <p> <%= torrefactor.country %> </p>
-            <a href="<%= torrefactor.website %>" target="_blank">Website</a>
-            <form action="torrefactors/<%= torrefactor.id %>/delete" method="post">
-                <button type="submit">X</button>
-            </form>
-            <a href="/torrefactors/<%= torrefactor.id %>/edit">Edit</a>
-    <% }) } %>                                           
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title">Torrefactors</h1>
+            <a href="/torrefactors/new" class="btn btn--primary">+ Add</a>
+        </header>
+
+        <% if(torrefactors.length === 0){ %>
+            <p class="empty-state">No torrefactors yet.</p>
+        <% } else { 
+            torrefactors.forEach(torrefactor => { %>
+                <article class="card">
+                    <div class="card__body">
+                        <p class="card__title"><%= torrefactor.name %></p>
+                        <p class="card__description"><%= torrefactor.country %></p>
+                    </div>
+                    <div class="card__actions">
+                        <a href="<%= torrefactor.website %>" target="_blank" class="btn btn--secondary">Website</a>
+                        <a href="/torrefactors/<%= torrefactor.id %>" class="btn btn--secondary">Details</a>
+                        <a href="/torrefactors/<%= torrefactor.id %>/edit" class="btn btn--secondary">Edit</a>
+                        <form action="/torrefactors/<%= torrefactor.id %>/delete" method="post">
+                            <button type="submit" class="btn btn--danger">X</button>
+                        </form>
+                    </div>
+                </article>
+        <% }) } %>
+    </main>
 </body>
 </html>
 

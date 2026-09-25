@@ -3,20 +3,31 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    <h1>Category index</h1>
-    <a href="/categories/new">Add a Category</a>
-    <br>
-    <% if(categories.length === 0){ %>
-        <p>there's no categories</p>
-    <% } else { 
-        categories.forEach(category => { %>
-            <a href="/categories/<%= category.id %>"> <%= category.name %> </a>
-            <p> <%= category.description %> </p>
-                <form action="/categories/<%= category.id %>/delete" method="post">
-                    <button type="submit">X</button>
-                </form>
-                <a href="/categories/<%= category.id %>/edit">Edit</a>
-    <% }) } %>                                           
+    <main class="main">
+        <header class="page-header">
+            <h1 class="page-title">Categories</h1>
+            <a href="/categories/new" class="btn btn--primary">+ Add</a>
+        </header>
+
+        <% if(categories.length === 0){ %>
+            <p class="empty-state">No categories yet.</p>
+        <% } else { 
+            categories.forEach(category => { %>
+                <article class="card">
+                    <div class="card__body">
+                        <p class="card__title"><%= category.name %></p>
+                        <p class="card__description"><%= category.description %></p>
+                    </div>
+                    <div class="card__actions">
+                        <a href="/categories/<%= category.id %>" class="btn btn--secondary">Details</a>
+                        <a href="/categories/<%= category.id %>/edit" class="btn btn--secondary">Edit</a>
+                        <form action="/categories/<%= category.id %>/delete" method="post">
+                            <button type="submit" class="btn btn--danger">X</button>
+                        </form>
+                    </div>
+                </article>
+        <% }) } %>
+    </main>
 </body>
 </html>
 
